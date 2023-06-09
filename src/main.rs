@@ -5,6 +5,7 @@ use game::GamePlugin;
 
 use bevy::prelude::*;
 use bevy::window::PresentMode;
+use bevy_editor_pls::prelude::*;
 use sequorch::SequOrchPlugin;
 
 fn main() {
@@ -18,6 +19,7 @@ fn main() {
 			}),
 			..Default::default()
 		}))
+		.add_plugin(EditorPlugin::default())
 		.add_plugin(GamePlugin)
 		.add_plugin(SequOrchPlugin)
 		.run();
