@@ -1,3 +1,5 @@
+mod map;
+
 use bevy::prelude::*;
 use bevy::render::camera::ScalingMode;
 
@@ -5,7 +7,8 @@ pub struct GamePlugin;
 
 impl Plugin for GamePlugin {
 	fn build(&self, app: &mut App) {
-		app.add_startup_system(setup_camera);
+		app.add_startup_system(setup_camera)
+			.add_startup_system(map::spawn_floor);
 	}
 }
 
