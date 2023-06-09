@@ -1,4 +1,9 @@
-use bevy::{prelude::*, window::PresentMode};
+mod game;
+
+use game::GamePlugin;
+
+use bevy::prelude::*;
+use bevy::window::PresentMode;
 
 fn main() {
 	App::new()
@@ -11,5 +16,6 @@ fn main() {
 			}),
 			..Default::default()
 		}))
+		.add_plugin(GamePlugin)
 		.run();
 }
