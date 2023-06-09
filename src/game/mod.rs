@@ -21,6 +21,7 @@ pub fn setup_camera(mut commands: Commands) {
 		..Default::default()
 	};
 	camera.transform.scale = Vec3::new(10., 10., 1.);
+	camera.transform.translation = Vec3::new(25., 15., 1000.);
 
 	commands.spawn(camera);
 }
