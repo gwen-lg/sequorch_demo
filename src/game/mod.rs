@@ -1,5 +1,4 @@
 use bevy::prelude::*;
-use bevy::render::camera::ScalingMode;
 
 pub struct GamePlugin;
 
@@ -9,15 +8,17 @@ impl Plugin for GamePlugin {
 	}
 }
 
+const VIEWPORT_CAM_VIEW: Vec2 = Vec2::new(1280., 768.);
+
 pub fn setup_camera(mut commands: Commands) {
 	let mut camera = Camera2dBundle::default();
 	camera.projection = OrthographicProjection {
 		far: 1000.0,
-		//depth_calculation: DepthCalculation::ZDifference,
-		scaling_mode: ScalingMode::FixedHorizontal(5.),
+		scale: 0.1,
 		..Default::default()
 	};
-	camera.transform.scale = Vec3::new(10., 10., 1.);
+	camera.transform.translation =
+		Vec3::new(VIEWPORT_CAM_VIEW.x / 20., VIEWPORT_CAM_VIEW.y / 20., 999.0);
 
 	commands.spawn(camera);
 }
