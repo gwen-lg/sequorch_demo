@@ -1,10 +1,13 @@
+mod level;
+
 use bevy::prelude::*;
 
 pub struct GamePlugin;
 
 impl Plugin for GamePlugin {
 	fn build(&self, app: &mut App) {
-		app.add_startup_system(setup_camera);
+		app.add_startup_system(setup_camera)
+			.add_startup_system(level::setup_test_map);
 	}
 }
 
