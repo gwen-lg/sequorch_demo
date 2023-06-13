@@ -1,9 +1,11 @@
 mod game;
+mod sequorch;
 
 use game::GamePlugin;
 
 use bevy::prelude::*;
 use bevy::window::PresentMode;
+use sequorch::SequOrchPlugin;
 
 fn main() {
 	App::new()
@@ -17,5 +19,6 @@ fn main() {
 			..Default::default()
 		}))
 		.add_plugin(GamePlugin)
+		.add_plugin(SequOrchPlugin)
 		.run();
 }
