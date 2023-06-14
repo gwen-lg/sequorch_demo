@@ -1,15 +1,20 @@
+mod app;
 mod game;
 mod sequorch;
 
-use game::GamePlugin;
+use crate::game::GamePlugin;
 
 use bevy::prelude::*;
 use bevy::window::PresentMode;
 use bevy_editor_pls::prelude::*;
+use clap::Parser;
 use sequorch::SequOrchPlugin;
 
 fn main() {
-	App::new()
+	let args = app::Args::parse();
+
+	let mut bevy_app = App::new();
+	bevy_app
 		.add_plugins(DefaultPlugins.set(WindowPlugin {
 			primary_window: Some(Window {
 				title: "SequOrch Demo".to_string(),
@@ -19,8 +24,12 @@ fn main() {
 			}),
 			..Default::default()
 		}))
-		.add_plugin(EditorPlugin::default())
 		.add_plugin(GamePlugin)
-		.add_plugin(SequOrchPlugin)
-		.run();
+		.add_plugin(SequOrchPlugin);
+
+	if args.editor_pls() {
+		bevy_app.add_plugin(EditorPlugin::default());
+	}
+
+	bevy_app.run();
 }
