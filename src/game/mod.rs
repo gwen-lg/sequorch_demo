@@ -1,5 +1,6 @@
 mod door;
 mod level;
+mod npc;
 
 use bevy::prelude::*;
 
@@ -9,7 +10,8 @@ impl Plugin for GamePlugin {
 	fn build(&self, app: &mut App) {
 		app.add_startup_system(setup_camera)
 			.add_startup_system(level::setup_test_map)
-			.add_startup_system(setup_doors);
+			.add_startup_system(setup_doors)
+			.add_startup_system(setup_npcs);
 	}
 }
 
@@ -33,4 +35,10 @@ pub fn setup_doors(mut commands: Commands) {
 	door::spawn_door(&mut commands, DOOR_SIZE, Transform::from_xyz(10., 1.0, 0.));
 	door::spawn_door(&mut commands, DOOR_SIZE, Transform::from_xyz(50., 1.0, 0.));
 	door::spawn_door(&mut commands, DOOR_SIZE, Transform::from_xyz(105., 1.0, 0.));
+}
+
+pub fn setup_npcs(mut commands: Commands) {
+	npc::spawn_npc(&mut commands, Transform::from_xyz(5., 2., 3.));
+	npc::spawn_npc(&mut commands, Transform::from_xyz(35., 2., 3.));
+	npc::spawn_npc(&mut commands, Transform::from_xyz(65., 2., 3.));
 }
