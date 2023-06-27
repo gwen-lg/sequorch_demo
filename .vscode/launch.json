@@ -1,0 +1,51 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'sequorch_demo'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=sequorch_demo",
+                    "--package=sequorch_demo"
+                ],
+                "filter": {
+                    "name": "sequorch_demo",
+                    "kind": "bin"
+                }
+            },
+            "args": [
+                "-e"
+            ],
+            "cwd": "${userHome}/.cache/cargo/debug/",
+            "env": {
+                "LD_LIBRARY_PATH": "${userHome}/.cache/cargo/debug/deps:${env:HOME}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib",
+                "BEVY_ASSET_ROOT": "${workspaceFolder}"
+            }
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'sequorch_demo'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=sequorch_demo",
+                    "--package=sequorch_demo"
+                ],
+                "filter": {
+                    "name": "sequorch_demo",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
