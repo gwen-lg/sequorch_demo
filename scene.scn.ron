@@ -1,0 +1,57 @@
+(
+  entities: {
+    0: (
+      components: {
+        "bevy_window::window::Window": (
+          cursor: (
+            icon: Default,
+            visible: true,
+            grab_mode: None,
+            hit_test: true,
+            physical_position: Some((
+              x: 169.0,
+              y: 256.0,
+            )),
+          ),
+          present_mode: Immediate,
+          mode: Windowed,
+          position: At((
+            x: 466,
+            y: 231,
+          )),
+          resolution: (
+            physical_width: 1280,
+            physical_height: 768,
+            scale_factor_override: None,
+            scale_factor: 1.0,
+          ),
+          title: "SequOrch Demo",
+          composite_alpha_mode: Auto,
+          resize_constraints: (
+            min_width: 180.0,
+            min_height: 120.0,
+            max_width: inf,
+            max_height: inf,
+          ),
+          resizable: true,
+          decorations: true,
+          transparent: false,
+          focused: true,
+          window_level: Normal,
+          canvas: None,
+          fit_canvas_to_parent: false,
+          prevent_default_event_handling: true,
+          internal: (
+            minimize_request: None,
+            maximize_request: None,
+          ),
+          ime_enabled: false,
+          ime_position: (
+            x: 0.0,
+            y: 0.0,
+          ),
+        ),
+      },
+    ),
+  },
+)
