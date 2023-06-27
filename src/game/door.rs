@@ -4,7 +4,7 @@ use bevy::sprite::Anchor;
 const DOOR_COLOR: Color = Color::rgb(0.2, 0.2, 0.9);
 
 #[derive(Component)]
-struct Door;
+pub struct Door;
 
 pub fn spawn_door(commands: &mut Commands, size: Vec2, transform: Transform) {
 	let door = (
