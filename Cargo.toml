@@ -9,3 +9,4 @@ edition = "2021"
 bevy = "0.10.1"
 bevy_editor_pls = "0.4.0"
 clap = { version = "4.3.3", features = ["derive"] }
+serde = { version = "1.0.164", features = ["derive"] }
