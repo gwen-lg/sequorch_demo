@@ -1,3 +1,4 @@
+pub mod data;
 use bevy::prelude::*;
 
 pub struct SequOrchPlugin;
