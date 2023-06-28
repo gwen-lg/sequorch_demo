@@ -4,6 +4,8 @@ mod npc;
 
 use std::time::Duration;
 
+use crate::sequorch::data::BindId;
+use crate::sequorch::run::{EntityBinding, Progress, SequOrchTransform};
 use crate::sequorch::{self, SequOrchData};
 use bevy::prelude::*;
 use bevy::time::common_conditions::on_timer;
@@ -75,8 +77,15 @@ pub fn start_sequorch_on_door(
 	println!("start_sequorch_on_door");
 	let doors = doors.iter().collect::<Vec<_>>();
 	let rand_door = doors[0]; //TODO: get random door
-	commands.spawn(sequorch::run::GroupInst {
-		entity: rand_door,
+
+	commands.entity(rand_door).insert(SequOrchTransform);
+
+	let _res = commands.spawn(sequorch::run::SceneInst {
+		entities_binding: vec![EntityBinding {
+			entity: rand_door,
+			bind_id: BindId::from("ent1"),
+		}],
 		asset: hardcoded_assets.door_gr.clone(),
+		progress: Progress(0.),
 	});
 }

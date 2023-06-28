@@ -5,7 +5,7 @@ pub use self::data::SequOrchData;
 
 use bevy::prelude::*;
 
-use self::run::{GroupInst, SceneInst};
+use self::run::{GroupInst, SceneInst, SequOrchTransform};
 
 #[derive(Debug, Hash, PartialEq, Eq, Clone, SystemSet)]
 pub enum SequOrchSet {
@@ -26,25 +26,26 @@ impl Plugin for SequOrchPlugin {
 					.chain(),
 			)
 			.add_system(update_scenes)
-			.add_system(update_groups); // .in_set(SequOrchSet::Update)
+			.add_system(update_transform); // .in_set(SequOrchSet::Update)
 	}
 }
 
 pub fn update_scenes(time: Res<Time>, mut scenes: Query<&mut SceneInst>) {
 	scenes.par_iter().for_each(|scene| {
-		println!("update scene : '{scene:?}'\n\t{time:?}");
+		println!("update scene : '{scene:?}'\n\t{time:#?}");
 		// update time for groups ?
 	})
 }
-pub fn update_groups(
-	time: Res<Time>,
-	groups: Query<&GroupInst>,
-	mut transforms: Query<&mut Transform>,
+pub fn update_transform(
+	//time: Res<Time>,
+	mut entities: Query<(Entity, &mut Transform), With<SequOrchTransform>>,
 ) {
-	groups.par_iter().for_each(|group| {
-		let transform = transforms.get(group.entity);
-		//println!("update scene : '{scene:?}'");
-	})
+	entities.par_iter().for_each(|(_entity, _transform)| {
+		//let transform = entities.get(entity);
+		//transform = transform
+
+		//println!("update scene : '{transform:#?}'");
+	});
 }
 /*
    for (mut transform, velocity) in &mut query {
