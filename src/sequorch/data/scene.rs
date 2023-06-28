@@ -16,3 +16,17 @@ impl Default for Scene {
 		}
 	}
 }
+
+impl Scene {
+	pub fn new(flow_scale: FlowScale) -> Self {
+		Self {
+			flow_scale,
+			events: vec![],
+		}
+	}
+
+	pub fn add_events(&mut self, events: &mut Vec<Event>) {
+		self.events.append(events);
+		//TODO: sort events
+	}
+}

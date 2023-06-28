@@ -18,3 +18,9 @@ pub const FLOW_PERTHOUSAND: FlowScale = FlowScale::Subdivision(SubUnit(1000));
 
 #[derive(Debug, Deserialize)]
 pub struct FlowProgress(u32);
+
+impl FlowProgress {
+	pub fn new(progress: u32) -> Self {
+		Self(progress)
+	}
+}
