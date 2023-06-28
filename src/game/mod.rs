@@ -61,7 +61,7 @@ pub fn load_sequorch_assets(
 	mut sequorch_data: ResMut<Assets<SequOrchData>>,
 	//hardcoded_assets: ResMut<HardcodedAssets>,
 ) {
-	let test_sequorch_data = SequOrchData { groups: vec![] }; //TODO
+	let test_sequorch_data = sequorch::data::create_test_sequorch_data(); //TODO
 	let handle = sequorch_data.add(test_sequorch_data);
 	commands.insert_resource(HardcodedAssets { door_gr: handle });
 }
