@@ -30,14 +30,27 @@ impl Plugin for SequOrchPlugin {
 	}
 }
 
-pub fn update_scenes(time: Res<Time>, mut scenes: Query<&mut SceneInst>) {
-	scenes.par_iter().for_each(|scene| {
-		println!("update scene : '{scene:?}'\n\t{time:#?}");
-		// update time for groups ?
+pub fn update_scenes(
+	time: Res<Time>,
+	sequorchs: Res<Assets<SequOrchData>>,
+	mut scenes: Query<&mut SceneInst>,
+) {
+	let delta_time = time.delta();
+	scenes.par_iter_mut().for_each_mut(|mut scene_inst| {
+		let sequorch_data = sequorchs.get(&scene_inst.asset()).unwrap();
+
+		let old_progress = scene_inst.progress();
+		let new_progress = old_progress + delta_time;
+		let scene = &sequorch_data.scenes[0];
+		let x = scene.events();
+
+		//let sequorch_data = Assets::<SequOrchData>::get(self.asset);
+		scene_inst.update_time(delta_time);
+		//println!("update scene : '{scene:?}'\n\t{time:#?}");
 	})
 }
 pub fn update_transform(
-	//time: Res<Time>,
+	_time: Res<Time>,
 	mut entities: Query<(Entity, &mut Transform), With<SequOrchTransform>>,
 ) {
 	entities.par_iter().for_each(|(_entity, _transform)| {

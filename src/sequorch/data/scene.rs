@@ -25,6 +25,10 @@ impl Scene {
 		}
 	}
 
+	pub fn events(&self) -> &Vec<Event> {
+		&self.events
+	}
+
 	pub fn add_events(&mut self, events: &mut Vec<Event>) {
 		self.events.append(events);
 		//TODO: sort events
