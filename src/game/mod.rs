@@ -4,7 +4,7 @@ mod npc;
 
 use std::time::Duration;
 
-use crate::sequorch::data::BindId;
+use crate::sequorch::data::{BindId, FlowProgress};
 use crate::sequorch::run::{EntityBinding, Progress, SequOrchTransform};
 use crate::sequorch::{self, SequOrchData};
 use bevy::prelude::*;
@@ -71,6 +71,7 @@ pub fn load_sequorch_assets(
 pub fn start_sequorch_on_door(
 	mut commands: Commands,
 	//group: Res<sequorch::data::Group>,
+	sequorchs: Res<Assets<SequOrchData>>,
 	doors: Query<Entity, &Door>,
 	hardcoded_assets: Res<HardcodedAssets>,
 ) {
@@ -80,12 +81,17 @@ pub fn start_sequorch_on_door(
 
 	commands.entity(rand_door).insert(SequOrchTransform);
 
+	let asset_handle = hardcoded_assets.door_gr.clone();
+	let asset = sequorchs.get(&asset_handle).unwrap();
+
 	let _res = commands.spawn(sequorch::run::SceneInst {
 		entities_binding: vec![EntityBinding {
 			entity: rand_door,
 			bind_id: BindId::from("ent1"),
 		}],
-		asset: hardcoded_assets.door_gr.clone(),
+		asset: asset_handle,
 		progress: Progress(0.),
+		flow_progress: FlowProgress::new(0),
+		flow_scale: asset.scenes[0].flow_scale(), // HACK: get it from Asset
 	});
 }

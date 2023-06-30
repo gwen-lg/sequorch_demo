@@ -5,7 +5,7 @@ pub use self::data::SequOrchData;
 
 use bevy::prelude::*;
 
-use self::run::{GroupInst, SceneInst, SequOrchTransform};
+use self::run::{SceneInst, SequOrchTransform};
 
 #[derive(Debug, Hash, PartialEq, Eq, Clone, SystemSet)]
 pub enum SequOrchSet {
@@ -37,16 +37,16 @@ pub fn update_scenes(
 ) {
 	let delta_time = time.delta();
 	scenes.par_iter_mut().for_each_mut(|mut scene_inst| {
-		let sequorch_data = sequorchs.get(&scene_inst.asset()).unwrap();
+		let sequorch_data = sequorchs.get(scene_inst.asset()).unwrap();
 
-		let old_progress = scene_inst.progress();
-		let new_progress = old_progress + delta_time;
+		let old_progress = scene_inst.flow_progress();
+		scene_inst.update_time(delta_time);
+		let new_progress = scene_inst.flow_progress();
+		//println!("update_scenes : {delta_time:?} - {old_progress:?} -> {new_progress:?}");
 		let scene = &sequorch_data.scenes[0];
 		let x = scene.events();
 
 		//let sequorch_data = Assets::<SequOrchData>::get(self.asset);
-		scene_inst.update_time(delta_time);
-		//println!("update scene : '{scene:?}'\n\t{time:#?}");
 	})
 }
 pub fn update_transform(

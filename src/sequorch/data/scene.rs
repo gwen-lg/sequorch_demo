@@ -25,6 +25,10 @@ impl Scene {
 		}
 	}
 
+	pub fn flow_scale(&self) -> FlowScale {
+		self.flow_scale
+	}
+
 	pub fn events(&self) -> &Vec<Event> {
 		&self.events
 	}

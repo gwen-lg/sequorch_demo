@@ -5,7 +5,10 @@ use std::{
 
 use bevy::prelude::*;
 
-use crate::sequorch::SequOrchData;
+use crate::sequorch::{
+	data::{FlowProgress, FlowScale},
+	SequOrchData,
+};
 
 use super::entity_bind::EntityBinding;
 
@@ -28,23 +31,34 @@ impl AddAssign<Duration> for Progress {
 	}
 }
 
+impl From<f32> for Progress {
+	fn from(value: f32) -> Self {
+		Self(value)
+	}
+}
+
 #[derive(Component, Debug)]
 pub struct SceneInst {
 	pub(crate) asset: Handle<SequOrchData>,
 	pub(crate) entities_binding: Vec<EntityBinding>,
 	pub(crate) progress: Progress,
+	pub(crate) flow_progress: FlowProgress,
+	pub(crate) flow_scale: FlowScale,
 }
 
 impl SceneInst {
 	pub(crate) fn update_time(&mut self, delta: Duration) {
 		self.progress += delta;
+
+		let Progress(progress) = self.progress;
+		self.flow_progress = FlowProgress::from(self.flow_scale, progress);
 	}
 
 	pub fn asset(&self) -> &Handle<SequOrchData> {
 		&self.asset
 	}
 
-	pub fn progress(&self) -> Progress {
-		self.progress
+	pub fn flow_progress(&self) -> FlowProgress {
+		self.flow_progress
 	}
 }
