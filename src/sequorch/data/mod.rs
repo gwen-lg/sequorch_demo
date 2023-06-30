@@ -15,7 +15,7 @@ pub use flow::FlowProgress;
 pub use flow::FlowScale;
 pub use flow::FLOW_PERCENT;
 pub use flow::FLOW_PERTHOUSAND;
-pub use flow::FLOW_TIME_MS;
+pub use flow::FLOW_TIME_CS;
 pub use scene::Scene;
 
 #[derive(Debug, Deserialize, TypeUuid)]
@@ -26,7 +26,7 @@ pub struct SequOrchData {
 
 pub fn create_test_sequorch_data() -> SequOrchData {
 	let ent_bind = BindId::from("ent1");
-	let mut scene = Scene::new(FLOW_TIME_MS);
+	let mut scene = Scene::new(FLOW_TIME_CS);
 	scene.add_events(&mut vec![
 		Event {
 			flow_position: FlowProgress::new(50),

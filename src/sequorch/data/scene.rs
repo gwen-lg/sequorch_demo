@@ -11,7 +11,7 @@ pub struct Scene {
 impl Default for Scene {
 	fn default() -> Self {
 		Self {
-			flow_scale: flow::FLOW_TIME_MS,
+			flow_scale: flow::FLOW_TIME_CS,
 			events: vec![],
 		}
 	}

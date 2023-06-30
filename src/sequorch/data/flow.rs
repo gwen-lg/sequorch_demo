@@ -12,7 +12,8 @@ pub enum FlowScale {
 	Subdivision(SubUnit),
 }
 
-pub const FLOW_TIME_MS: FlowScale = FlowScale::Time(TimeUnit(100));
+// one unit correspond to one centisecond
+pub const FLOW_TIME_CS: FlowScale = FlowScale::Time(TimeUnit(100));
 pub const FLOW_PERCENT: FlowScale = FlowScale::Subdivision(SubUnit(100));
 pub const FLOW_PERTHOUSAND: FlowScale = FlowScale::Subdivision(SubUnit(1000));
 
