@@ -11,17 +11,17 @@ pub fn setup_test_map(mut commands: Commands) {
 	floor(
 		&mut map_parent,
 		Vec2::new(1., 75.8),
-		Transform::from_xyz(0. as f32, 1. as f32 / 2., 0.),
+		Transform::from_xyz(0., 1. / 2., 0.),
 	);
 	floor(
 		&mut map_parent,
 		Vec2::new(1., 75.8),
-		Transform::from_xyz(127. as f32, 1. as f32, 0.),
+		Transform::from_xyz(127., 1., 0.),
 	);
 	floor(
 		&mut map_parent,
 		Vec2::new(128., 1.),
-		Transform::from_xyz(0. as f32, 0. as f32, 0.),
+		Transform::from_xyz(0., 0., 0.),
 	);
 }
 
