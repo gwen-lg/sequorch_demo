@@ -1,6 +1,6 @@
 use serde::Deserialize;
 
-#[derive(Default, Debug, Clone, Deserialize)] //TODO: Copy
+#[derive(Default, Debug, Clone, Deserialize, PartialEq)] //TODO: Copy
 pub struct BindId(String); //TODO: use unique name feature and numerical value comparison
 
 impl BindId {
