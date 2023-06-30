@@ -75,9 +75,3 @@ pub fn update_transform(
 		//println!("update scene : '{transform:#?}'");
 	});
 }
-/*
-   for (mut transform, velocity) in &mut query {
-	   transform.translation.x += velocity.x * time.delta_seconds();
-	   transform.translation.y += velocity.y * time.delta_seconds();
-   }
-*/
