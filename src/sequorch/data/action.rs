@@ -4,7 +4,7 @@ use serde::Deserialize;
 use super::BindId;
 
 //TODO: move it elsewhere
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone, Copy)]
 pub enum TransformMode {
 	Absolute,
 	Relative,
