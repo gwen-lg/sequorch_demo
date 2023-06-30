@@ -9,7 +9,7 @@ use bevy::reflect::TypeUuid;
 use serde::Deserialize;
 
 pub use action::Action;
-pub use bind::{Bind, BindId};
+pub use bind::BindId;
 pub use event::Event;
 pub use flow::FlowProgress;
 pub use flow::FlowScale;

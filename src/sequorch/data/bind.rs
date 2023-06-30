@@ -8,8 +8,3 @@ impl BindId {
 		Self(name.to_string())
 	}
 }
-
-#[derive(Default, Debug, Deserialize)] //Not resource, but asset (Add serilize ?)
-pub struct Bind {
-	id: BindId,
-}
