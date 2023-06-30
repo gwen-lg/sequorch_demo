@@ -6,7 +6,7 @@ use std::{
 use bevy::prelude::*;
 
 use crate::sequorch::{
-	data::{FlowProgress, FlowScale},
+	data::{BindId, FlowProgress, FlowScale},
 	SequOrchData,
 };
 
@@ -60,5 +60,18 @@ impl SceneInst {
 
 	pub fn flow_progress(&self) -> FlowProgress {
 		self.flow_progress
+	}
+
+	pub fn get_entities(&self, bind_id: BindId) -> Vec<Entity> {
+		self.entities_binding
+			.iter()
+			.filter_map(|ent_binding| {
+				if ent_binding.bind_id == bind_id {
+					Some(ent_binding.entity)
+				} else {
+					None
+				}
+			})
+			.collect()
 	}
 }
