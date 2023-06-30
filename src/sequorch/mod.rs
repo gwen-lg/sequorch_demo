@@ -44,8 +44,23 @@ pub fn update_scenes(
 		let new_progress = scene_inst.flow_progress();
 		//println!("update_scenes : {delta_time:?} - {old_progress:?} -> {new_progress:?}");
 		let scene = &sequorch_data.scenes[0];
-		let x = scene.events();
+		let scene_events = scene.events();
 
+		let actions = scene_events
+			.iter()
+			.filter_map(|event| {
+				let event_pos = event.position();
+				if old_progress < event_pos && event_pos <= new_progress {
+					Some(event.actions())
+				} else {
+					None
+				}
+			})
+			.flatten(); // .collect::<Vec<_>>()
+
+		actions.for_each(|action| {
+			println!("[{new_progress:?}]: start action '{action:?}'");
+		});
 		//let sequorch_data = Assets::<SequOrchData>::get(self.asset);
 	})
 }
