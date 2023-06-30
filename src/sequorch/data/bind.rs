@@ -5,9 +5,7 @@ pub struct BindId(String); //TODO: use unique name feature and numerical value c
 
 impl BindId {
 	pub fn from(name: impl ToString) -> Self {
-		Self {
-			0: name.to_string(),
-		}
+		Self(name.to_string())
 	}
 }
 
