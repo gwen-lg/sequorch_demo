@@ -8,7 +8,7 @@ use bevy::prelude::Vec2;
 use bevy::reflect::TypeUuid;
 use serde::Deserialize;
 
-pub use action::Action;
+pub use action::{Action, TransformMode};
 pub use bind::BindId;
 pub use event::Event;
 pub use flow::FlowProgress;
