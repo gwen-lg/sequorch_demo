@@ -32,12 +32,12 @@ fn main() {
 				.build()
 				.disable::<AudioPlugin>(),
 		)
-		.add_plugin(GamePlugin)
-		.add_plugin(SequOrchPlugin);
+		.add_plugins(GamePlugin)
+		.add_plugins(SequOrchPlugin);
 
 	if args.editor_pls() {
 		#[cfg(feature = "editor")]
-		bevy_app.add_plugin(EditorPlugin::default());
+		bevy_app.add_plugins(EditorPlugin::default());
 
 		#[cfg(not(feature = "editor"))]
 		println!("can't enbale editor, feature is not enabled");
