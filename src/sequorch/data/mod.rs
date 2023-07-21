@@ -5,7 +5,7 @@ mod flow;
 mod scene;
 
 use bevy::prelude::Vec2;
-use bevy::reflect::TypeUuid;
+use bevy::reflect::{TypePath, TypeUuid};
 use serde::Deserialize;
 
 pub use action::{Action, TransformMode};
@@ -18,7 +18,7 @@ pub use flow::FLOW_PERTHOUSAND;
 pub use flow::FLOW_TIME_CS;
 pub use scene::Scene;
 
-#[derive(Debug, Deserialize, TypeUuid)]
+#[derive(Debug, Deserialize, TypePath, TypeUuid)]
 #[uuid = "39cadc56-aa9c-4543-8640-a018b74b5052"]
 pub struct SequOrchData {
 	pub scenes: Vec<Scene>,
