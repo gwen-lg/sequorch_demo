@@ -7,9 +7,11 @@ use crate::game::GamePlugin;
 use bevy::audio::AudioPlugin;
 use bevy::prelude::*;
 use bevy::window::PresentMode;
-use bevy_editor_pls::prelude::*;
 use clap::Parser;
 use sequorch::SequOrchPlugin;
+
+#[cfg(feature = "editor")]
+use bevy_editor_pls::prelude::*;
 
 fn main() {
 	let args = app::Args::parse();
@@ -34,7 +36,11 @@ fn main() {
 		.add_plugin(SequOrchPlugin);
 
 	if args.editor_pls() {
+		#[cfg(feature = "editor")]
 		bevy_app.add_plugin(EditorPlugin::default());
+
+		#[cfg(not(feature = "editor"))]
+		println!("can't enbale editor, feature is not enabled");
 	}
 
 	bevy_app.run();
