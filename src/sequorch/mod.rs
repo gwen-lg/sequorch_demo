@@ -21,16 +21,8 @@ impl Plugin for SequOrchPlugin {
 	fn build(&self, app: &mut App) {
 		app.add_asset::<SequOrchData>()
 			.add_event::<TeleportEvent>()
-			.configure_sets(
-				(
-					CoreSet::StateTransitions,
-					SequOrchSet::Update,
-					CoreSet::FixedUpdate,
-				)
-					.chain(),
-			)
-			.add_system(update_scenes)
-			.add_system(update_transform); // .in_set(SequOrchSet::Update)
+			//.configure_sets(Update, SequOrchSet::Update)
+			.add_systems(Update, (update_scenes, update_transform).chain());
 	}
 }
 
